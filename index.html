@@ -2,26 +2,32 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0a12" />
-  <title>Le Bon Goût — by Kamelia Iabadene</title>
-  <meta name="description" content="Gâteaux & desserts 3D pour anniversaires, mariages, fêtes et événements en Kabylie. Devis rapide via WhatsApp/Messenger." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le Bon Goût – Sucré & Salé</title>
+  <meta name="description" content="Vitrine de pâtisserie 3D pour vos événements : anniversaires, mariages, traditions. Devis rapide via Messenger." />
+
+  <!-- Simple favicon (uses emoji if logo not set yet) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍰</text></svg>">
 
   <style>
     :root{
-      --bg0:#070610;
-      --bg1:#0b0a16;
-      --card:#0f1022cc;
-      --stroke:#ffffff1a;
-      --txt:#f5f2ff;
-      --mut:#c9c3df;
-      --acc1:#ff4fd8;
-      --acc2:#7c5cff;
-      --acc3:#31e6c3;
-      --acc4:#ffd26e;
-      --shadow: 0 18px 60px #00000088;
+      --bg0:#070812;
+      --bg1:#0b0c1a;
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.14);
+      --txt: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+
+      --p1:#ff4fd8;
+      --p2:#7c5cff;
+      --p3:#22d3ee;
+      --p4:#ffd166;
+
+      --shadow: 0 20px 70px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
       --r: 22px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -29,534 +35,654 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--txt);
       background:
-        radial-gradient(1200px 600px at 12% 12%, #7c5cff22, transparent 55%),
-        radial-gradient(900px 600px at 90% 20%, #ff4fd822, transparent 55%),
-        radial-gradient(900px 700px at 40% 92%, #31e6c322, transparent 55%),
+        radial-gradient(1200px 700px at 15% 15%, rgba(255,79,216,.18), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(124,92,255,.18), transparent 55%),
+        radial-gradient(1000px 700px at 40% 90%, rgba(34,211,238,.14), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
 
-    /* Animated “Kabylie vibe” subtle pattern */
-    .kabyle-pattern{
-      position:fixed; inset:-40px;
+    /* soft animated blobs */
+    .blob{
+      position:absolute; inset:auto;
+      width:320px; height:320px; border-radius:50%;
+      filter: blur(40px);
+      opacity:.25;
+      animation: floaty 9s ease-in-out infinite;
+      transform: translateZ(0);
       pointer-events:none;
-      opacity:.18;
-      filter: blur(.2px);
-      mix-blend-mode: screen;
-      background:
-        linear-gradient(90deg, transparent 0 48%, #ffd26e20 49% 51%, transparent 52% 100%),
-        linear-gradient(0deg, transparent 0 48%, #31e6c320 49% 51%, transparent 52% 100%);
-      background-size: 52px 52px;
-      transform: rotate(6deg);
-      animation: drift 16s linear infinite;
     }
-    @keyframes drift{from{translate:0 0}to{translate:-52px -52px}}
+    .b1{left:-90px; top:80px; background: conic-gradient(from 30deg, var(--p1), var(--p2), var(--p3), var(--p1));}
+    .b2{right:-120px; top:220px; width:420px;height:420px; animation-duration: 12s; background: conic-gradient(from 180deg, var(--p4), var(--p2), var(--p1), var(--p4));}
+    .b3{left:15%; bottom:-140px; width:520px;height:520px; animation-duration: 14s; background: conic-gradient(from 90deg, var(--p3), var(--p2), var(--p4), var(--p3));}
+
+    @keyframes floaty{
+      0%,100%{transform: translateY(0) translateX(0) scale(1)}
+      50%{transform: translateY(-22px) translateX(14px) scale(1.05)}
+    }
+
+    .wrap{
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 14px 70px;
+      position:relative;
+      z-index:1;
+    }
 
     /* Top bar */
     .topbar{
-      position:sticky; top:0; z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      position:sticky;
+      top:10px;
+      z-index:5;
+    }
+
+    .glass{
+      background: rgba(10,10,20,.55);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, #0b0a18dd, #0b0a18aa);
-      border-bottom:1px solid var(--stroke);
-    }
-    .topbar-inner{
-      max-width:1100px; margin:0 auto; padding:12px 14px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .left-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .chip{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--stroke);
-      background: #0f1022aa;
-      border-radius:999px;
-      box-shadow: 0 10px 30px #00000055;
-      transform-style:preserve-3d;
-    }
-    .chip strong{font-weight:800; letter-spacing:.2px}
-    .chip small{color:var(--mut)}
-    .btn{
-      position:relative;
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, #141534cc, #0f1022cc);
-      color:var(--txt);
-      padding:10px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex; align-items:center; gap:10px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      transform: translateZ(0);
-      user-select:none;
-    }
-    .btn:hover{
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 14px 40px #00000066;
-      border-color:#ffffff2a;
-    }
-    .btn:active{transform: translateY(0) scale(.99)}
-    .btn.primary{
-      background: linear-gradient(120deg, #31e6c3, #7c5cff, #ff4fd8);
-      border-color: transparent;
-      color:#0b0a12;
-      font-weight:900;
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 999px;
     }
 
-    /* “Game-like” animated icon */
-    .gicon{
-      width:18px; height:18px; display:inline-grid; place-items:center;
-      border-radius:6px;
-      background: radial-gradient(circle at 30% 30%, #fff, #ffffff40 35%, transparent 60%),
-                  linear-gradient(135deg, var(--acc3), var(--acc2), var(--acc1));
-      box-shadow: 0 8px 24px #00000066;
-      transform-style:preserve-3d;
-      animation: float 2.4s ease-in-out infinite;
-    }
-    .gicon i{
-      width:9px;height:9px; border-radius:2px;
-      background:#0b0a12cc;
-      transform: rotate(12deg);
-      box-shadow: 0 0 0 1px #ffffff22 inset;
-    }
-    @keyframes float{
-      0%,100%{transform: translateY(0) rotate(0deg)}
-      50%{transform: translateY(-3px) rotate(2deg)}
-    }
-
-    /* Brand (logo placeholder) */
     .brand{
       display:flex; align-items:center; gap:12px;
-      min-width: 220px;
-    }
-    .logo3d{
-      width:42px; height:42px; border-radius:14px;
-      background: conic-gradient(from 230deg, var(--acc1), var(--acc2), var(--acc3), var(--acc4), var(--acc1));
-      box-shadow: 0 18px 50px #00000088, 0 0 0 1px #ffffff22 inset;
-      position:relative;
-      transform: rotateZ(-10deg);
-      overflow:hidden;
-    }
-    .logo3d::after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: radial-gradient(circle at 30% 30%, #ffffffaa, transparent 55%);
-      transform: rotate(18deg);
-      opacity:.8;
-      animation: shine 3.2s ease-in-out infinite;
-    }
-    @keyframes shine{
-      0%,100%{transform: translate(-12%, -8%) rotate(18deg)}
-      50%{transform: translate(10%, 8%) rotate(18deg)}
-    }
-    .brandtext{line-height:1.05}
-    .brandtext .title{
-      font-size:16px; font-weight:950; letter-spacing:.2px;
-      text-transform:none;
-    }
-    .brandtext .by{
-      margin-top:4px;
-      font-size:12px; color:var(--mut);
-      font-weight:700;
-      /* 3D readable on mobile */
-      text-shadow:
-        0 1px 0 #000,
-        0 2px 0 #000,
-        0 10px 26px #000000aa;
-      transform: translateZ(12px);
+      padding: 10px 14px;
+      min-height:56px;
     }
 
-    /* Main layout */
-    .wrap{max-width:1100px; margin:0 auto; padding:18px 14px 64px}
-    .hero{
-      margin-top:16px;
-      padding:18px;
-      border:1px solid var(--stroke);
-      border-radius: var(--r);
-      background:
-        radial-gradient(900px 200px at 18% 0%, #ff4fd822, transparent 55%),
-        radial-gradient(600px 240px at 92% 10%, #31e6c322, transparent 60%),
-        linear-gradient(180deg, #101137cc, #0f1022cc);
-      box-shadow: var(--shadow);
+    .logo{
+      width:42px; height:42px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 14px 30px rgba(0,0,0,.35), 0 0 0 4px rgba(255,255,255,.06) inset;
+      overflow:hidden;
       transform-style:preserve-3d;
+      animation: logoPulse 2.8s ease-in-out infinite;
+      display:grid; place-items:center;
+    }
+    .logo img{width:100%;height:100%;object-fit:cover; display:block;}
+    .logo .fallback{font-size:22px; opacity:.95}
+    @keyframes logoPulse{
+      0%,100%{transform: translateY(0) rotateY(0deg)}
+      50%{transform: translateY(-2px) rotateY(14deg)}
+    }
+
+    .brandTxt{line-height:1.05}
+    .brandTxt .name{
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size: 15px;
+      text-shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    .brandTxt .sub{
+      margin-top:4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .by{
+      margin-top:4px;
+      font-size: 12px;
+      color: rgba(255,255,255,.80);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .by .chip{
+      padding:4px 10px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(255,79,216,.22), rgba(34,211,238,.18));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transform: translateZ(0);
+    }
+
+    /* action buttons */
+    .actions{
+      display:flex; align-items:center; gap:10px;
+      padding: 8px 10px;
+    }
+    .btn{
+      appearance:none; border:0;
+      color:var(--txt);
+      font-weight:800;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      position:relative;
+      transform-style:preserve-3d;
+      transition: transform .18s ease, filter .18s ease;
+      user-select:none;
+    }
+    .btn:active{transform: translateY(1px) scale(.99)}
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(255,79,216,.95), rgba(124,92,255,.92));
+      box-shadow: 0 18px 45px rgba(255,79,216,.18);
+    }
+    .btnGhost{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .btn:hover{transform: translateY(-2px) rotateX(2deg) rotateY(-2deg)}
+    .ico{
+      width:18px; height:18px;
+      display:inline-grid; place-items:center;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+      animation: wiggle 3.2s ease-in-out infinite;
+      transform-origin:center;
+    }
+    .btn:nth-child(1) .ico{animation-delay:.1s}
+    .btn:nth-child(2) .ico{animation-delay:.35s}
+    .btn:nth-child(3) .ico{animation-delay:.55s}
+
+    @keyframes wiggle{
+      0%,100%{transform: translateY(0) rotate(0deg) scale(1)}
+      40%{transform: translateY(-2px) rotate(-10deg) scale(1.06)}
+      60%{transform: translateY(1px) rotate(12deg) scale(1.06)}
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(800px 240px at 20% 0%, rgba(255,79,216,.22), transparent 55%),
+        radial-gradient(780px 260px at 90% 10%, rgba(34,211,238,.16), transparent 55%),
+        rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
+      transform-style:preserve-3d;
     }
-    .hero::before{
+    .hero:before{
       content:"";
-      position:absolute; inset:-60px;
-      background: radial-gradient(circle at 30% 30%, #ffffff10, transparent 55%);
-      filter: blur(2px);
+      position:absolute; inset:-2px;
+      background: linear-gradient(90deg, rgba(255,79,216,.10), rgba(124,92,255,.08), rgba(34,211,238,.10));
+      filter: blur(24px);
+      opacity:.45;
       pointer-events:none;
     }
-    .hero-grid{
-      display:grid; gap:14px;
-      grid-template-columns: 1.2fr .8fr;
-      align-items:center;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background:#0f1022aa;
-      width:fit-content;
-      box-shadow: 0 12px 34px #00000066;
-    }
-    .badge b{font-weight:950}
-    .h1{
-      font-size: clamp(22px, 4.2vw, 38px);
-      margin:12px 0 8px;
-      letter-spacing:.2px;
-      font-weight:1000;
-    }
-    .p{color:var(--mut); margin:0 0 12px; line-height:1.6}
-    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .mini{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
-
-    /* Kabylie hint line */
-    .kabylie-line{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;
-      color:#ffffffc9; font-weight:800;
-    }
-    .kabylie-tag{
-      padding:8px 10px;
-      border:1px dashed #ffffff2a;
-      border-radius:999px;
-      background:#0f102244;
-      display:inline-flex; gap:8px; align-items:center;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:50%;
-      background: linear-gradient(135deg, var(--acc4), var(--acc1));
-      box-shadow: 0 0 0 2px #00000055;
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-
-    /* Cards */
-    .section-title{
-      margin:22px 2px 12px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-    }
-    .section-title h2{margin:0; font-size:16px; color:#ffffffdd; letter-spacing:.2px}
-    .section-title small{color:var(--mut)}
-    .grid{
+    .heroInner{
+      position:relative;
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
+      gap:12px;
     }
-    .card{
-      border:1px solid var(--stroke);
-      border-radius: 18px;
-      overflow:hidden;
-      background: linear-gradient(180deg, #121335cc, #0f1022cc);
-      box-shadow: 0 16px 44px #00000055;
-      transform-style:preserve-3d;
-      position:relative;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      cursor:default;
-    }
-    .card:hover{
-      transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
-      box-shadow: 0 22px 70px #00000077;
-      border-color:#ffffff2a;
-    }
-    .thumb{
-      height:130px;
-      background:
-        radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-        linear-gradient(120deg, #ff4fd888, #7c5cff88, #31e6c388);
-      position:relative;
-    }
-    .thumb::after{
-      content:"Aperçu";
-      position:absolute; inset:auto 12px 12px 12px;
-      font-weight:900; letter-spacing:.2px;
-      color:#0b0a12;
-      background:#ffffffc9;
-      padding:8px 10px;
+    .kTag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
       border-radius:999px;
-      width:fit-content;
-      box-shadow: 0 12px 30px #00000055;
-    }
-    .content{padding:12px 12px 14px}
-    .krow{display:flex; align-items:center; justify-content:space-between; gap:10px}
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:12px; color:#ffffffd7;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid #ffffff22;
-      background:#0f102266;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
       width:fit-content;
     }
-    .price{
-      font-weight:1000;
-      background: linear-gradient(120deg, var(--acc4), #ffffff);
+    .kTag b{
+      background: linear-gradient(135deg, var(--p4), var(--p1));
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
-      text-shadow: 0 8px 28px #00000066;
+      letter-spacing:.2px;
     }
-    .title2{margin:10px 0 6px; font-weight:950; letter-spacing:.2px}
-    .desc{margin:0; color:var(--mut); font-size:13px; line-height:1.55}
 
-    /* Footer */
-    footer{
-      margin-top:28px;
-      padding:16px 14px;
-      border-top:1px solid var(--stroke);
-      color:var(--mut);
+    h1{
+      margin:0;
+      font-size: 24px;
+      line-height:1.15;
+      letter-spacing:.2px;
+      text-shadow: 0 22px 70px rgba(0,0,0,.45);
+    }
+    .lead{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.55;
+      max-width: 62ch;
+    }
+    .heroCtas{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 4px;
+    }
+    .pill{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-weight:800;
+      font-size: 12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition: transform .18s ease;
+    }
+    .pill:hover{transform: translateY(-2px)}
+    .spark{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--p3);
+      box-shadow: 0 0 0 6px rgba(34,211,238,.12), 0 0 25px rgba(34,211,238,.35);
+      animation: pulse 1.9s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform: scale(1); opacity:.9}
+      50%{transform: scale(1.15); opacity:1}
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 18px;
+      display:grid;
+      gap:12px;
+    }
+    .secHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+      margin-top: 18px;
+    }
+    .secTitle{
+      margin:0;
+      font-size: 16px;
+      font-weight: 950;
+      letter-spacing:.2px;
+    }
+    .secHint{
+      margin:0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 860px){
+      .grid{grid-template-columns: repeat(3, 1fr);}
+      h1{font-size: 32px}
+      .lead{font-size: 15px}
+      .brandTxt .name{font-size:16px}
+    }
+
+    .card{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(420px 220px at 20% 0%, rgba(255,255,255,.09), transparent 60%),
+        rgba(255,255,255,.05);
+      box-shadow: 0 18px 60px rgba(0,0,0,.38);
+      overflow:hidden;
+      transform-style:preserve-3d;
+      transition: transform .2s ease, box-shadow .2s ease;
+      position:relative;
+    }
+    .card:hover{
+      transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
+    }
+    .banner{
+      padding: 14px;
+      background:
+        linear-gradient(135deg, rgba(255,79,216,.18), rgba(124,92,255,.12), rgba(34,211,238,.14));
+      border-bottom:1px solid rgba(255,255,255,.10);
+      min-height: 110px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:6px;
+    }
+    .banner .k{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(255,255,255,.88);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+      width: fit-content;
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .cardBody{
+      padding: 12px 14px 14px;
+      display:grid;
+      gap:10px;
+    }
+    .price{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .price b{
+      color: var(--txt);
+      font-size: 14px;
+    }
+    .thumbs{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:8px;
+    }
+    .thumb{
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      overflow:hidden;
+      position:relative;
+      aspect-ratio: 1 / 1;
+      transform-style:preserve-3d;
+      transition: transform .18s ease;
+    }
+    .thumb:hover{transform: translateY(-2px) rotateX(2deg) rotateY(2deg)}
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: saturate(1.06) contrast(1.02);
+    }
+    .ph{
+      width:100%; height:100%;
+      display:grid; place-items:center;
+      font-size: 12px;
+      color: rgba(255,255,255,.70);
+      padding:10px;
       text-align:center;
+      background:
+        radial-gradient(120px 120px at 30% 30%, rgba(255,79,216,.16), transparent 60%),
+        radial-gradient(120px 120px at 70% 70%, rgba(34,211,238,.12), transparent 60%),
+        rgba(255,255,255,.04);
     }
 
-    /* Mobile first priority */
-    @media (max-width: 900px){
-      .hero-grid{grid-template-columns:1fr}
-      .mini{justify-content:flex-start}
-      .grid{grid-template-columns:1fr}
-      .brand{min-width:auto}
-      .chip{padding:9px 10px}
-      .btn{padding:10px 11px}
+    .miniCtas{
+      display:flex; gap:10px; flex-wrap:wrap;
     }
+    .miniLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      text-decoration:none;
+      font-weight: 900;
+      font-size: 13px;
+      transition: transform .18s ease;
+    }
+    .miniLink:hover{transform: translateY(-2px)}
+    .miniLink small{color:var(--muted); font-weight:800}
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+    footer{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .kabyleNote{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
     }
   </style>
 </head>
 
 <body>
-  <div class="kabyle-pattern" aria-hidden="true"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="left-actions">
-        <div class="chip" id="tiltChip">
-          <span class="gicon"><i></i></span>
-          <div>
-            <strong>Devis rapide</strong><br/>
-            <small>WhatsApp / Messenger</small>
+  <div class="wrap">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="glass brand">
+        <div class="logo" aria-label="Logo">
+          <!-- Put your logo here: upload logo.png to repo -->
+          <img src="logo.png" alt="Le Bon Goût logo" onerror="this.remove(); this.parentElement.innerHTML='<div class=&quot;fallback&quot;>🍰</div>';">
+        </div>
+        <div class="brandTxt">
+          <div class="name">Le Bon Goût – Sucré & Salé</div>
+          <div class="sub">Vitrine de créations • Événements • Sur commande</div>
+          <div class="by">
+            <span class="chip">by Kamelia Iabadene</span>
+            <span style="opacity:.85">•</span>
+            <span style="opacity:.92">Kabylie 💛💚💙</span>
           </div>
         </div>
-
-        <a class="btn primary" id="btnDevis" href="#" target="_blank" rel="noopener">
-          <span class="gicon" style="animation-duration:2.0s"><i></i></span>
-          Demander un devis
-        </a>
-
-        <a class="btn" id="btnCall" href="#">
-          📞 Appeler
-        </a>
       </div>
 
-      <div class="brand" id="brandTilt">
-        <div class="logo3d" id="logoBox" title="Logo (placeholder)"></div>
-        <div class="brandtext">
-          <div class="title">Le Bon Goût</div>
-          <div class="by">by Kamelia Iabadene</div>
-        </div>
+      <div class="glass actions">
+        <!-- Messenger Devis -->
+        <button class="btn btnPrimary" onclick="openMessenger()" title="Demander un devis sur Messenger">
+          <span class="ico">💬</span> Devis
+        </button>
+
+        <!-- Facebook -->
+        <a class="btn btnGhost" href="https://www.facebook.com/share/1HkunEg1Wh/" target="_blank" rel="noopener">
+          <span class="ico">📘</span> Facebook
+        </a>
+
+        <!-- WhatsApp placeholder -->
+        <button class="btn btnGhost" onclick="openWhatsApp()" title="WhatsApp (ajouter le numéro plus tard)">
+          <span class="ico">🟢</span> WhatsApp
+        </button>
       </div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero" id="heroTilt">
-      <div class="hero-grid">
-        <div>
-          <div class="badge">
-            <span class="dot"></span>
-            <b>Desserts & gâteaux 3D</b>
-            <span style="color:var(--mut)">pour tous vos événements</span>
-          </div>
-
-          <h1 class="h1">Une vitrine élégante pour vos gâteaux personnalisés</h1>
-          <p class="p">
-            Anniversaire, mariage, fêtes nationales, événements familiaux…
-            Découvrez des exemples (photos à ajouter ensuite) et des tarifs indicatifs en <b>DZD</b>.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn primary" id="btnWhats" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
-            <a class="btn" id="btnMsg" href="#" target="_blank" rel="noopener">📩 Messenger</a>
-            <a class="btn" href="#catalogue">🎂 Voir le catalogue</a>
-          </div>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="heroInner">
+        <div class="kTag">
+          <span class="spark"></span>
+          <span>Créations <b>3D</b> pour vos événements</span>
         </div>
 
-        <div class="mini">
-          <div class="kabylie-line">
-            <span class="kabylie-tag">⛰️ Kabylie</span>
-            <span class="kabylie-tag">✨ Fait maison</span>
-            <span class="kabylie-tag">🎉 Sur commande</span>
-          </div>
+        <h1>Gâteaux personnalisés • Anniversaires • Mariages • Traditions</h1>
+        <p class="lead">
+          Une vitrine moderne pour présenter des exemples de réalisations. Les prix ci-dessous sont indicatifs
+          et varient selon le thème, la taille et les détails. Contact rapide via <b>Messenger</b>.
+        </p>
+
+        <div class="heroCtas">
+          <span class="pill"><span class="ico">✨</span> Design mobile-first</span>
+          <span class="pill"><span class="ico">🧁</span> Sucré & Salé</span>
+          <span class="pill"><span class="ico">🧿</span> Touch Kabyle / Amazigh</span>
+          <span class="pill"><span class="ico">⚡</span> Animations 3D</span>
+        </div>
+
+        <div class="miniCtas" style="margin-top:8px;">
+          <a class="miniLink" href="#categories"><span class="ico">🎯</span> Voir les catégories</a>
+          <a class="miniLink" href="#contact"><span class="ico">📩</span> Contacter <small>(Messenger)</small></a>
         </div>
       </div>
     </section>
 
-    <div class="section-title" id="catalogue">
-      <h2>Exemples de catégories</h2>
-      <small>(Photos réelles à ajouter après le design)</small>
+    <!-- CATEGORIES -->
+    <div class="secHead" id="categories">
+      <div>
+        <p class="secTitle">Exemples de réalisations</p>
+        <p class="secHint">On classe par type — vous pourrez ajouter plus d’images après.</p>
+      </div>
+      <div class="kabyleNote">ⵣ Inspiration Kabyle • Tradition • Modernité</div>
     </div>
 
-    <section class="grid" id="cards">
-      <!-- Card 1 -->
+    <section class="grid section">
+      <!-- Anniversaire -->
       <article class="card">
-        <div class="thumb" style="background:
-          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-          linear-gradient(120deg, #31e6c388, #7c5cff88, #ff4fd888);"></div>
-        <div class="content">
-          <div class="krow">
-            <span class="tag">🎈 Anniversaire</span>
-            <span class="price">à partir de 8 000 DZD</span>
+        <div class="banner">
+          <div class="badge">🎂 Anniversaire (3D)</div>
+          <div class="k">Thèmes enfants • Foot • Super-héros</div>
+        </div>
+        <div class="cardBody">
+          <div class="price">
+            <span>Prix à partir de</span>
+            <b>6 500 – 12 000 DA</b>
           </div>
-          <div class="title2">Gâteau d’anniversaire (3D)</div>
-          <p class="desc">Design personnalisé selon le thème, taille et détails sur demande.</p>
+          <div class="thumbs">
+            <div class="thumb">
+              <img src="images/anniversaire-ilyane.jpg" alt="Anniversaire Ilyane (foot)" onerror="this.replaceWith(ph('Ajouter image Anniversaire 1'));">
+            </div>
+            <div class="thumb">
+              <img src="images/anniversaire-spiderman.jpg" alt="Anniversaire Spiderman" onerror="this.replaceWith(ph('Ajouter image Anniversaire 2'));">
+            </div>
+            <div class="thumb">
+              <img src="images/anniversaire-mini.jpg" alt="Anniversaire mini" onerror="this.replaceWith(ph('Ajouter image Anniversaire 3'));">
+            </div>
+          </div>
+          <button class="btn btnPrimary" onclick="openMessenger()" style="justify-content:center;">
+            <span class="ico">💬</span> Demander un devis
+          </button>
         </div>
       </article>
 
-      <!-- Card 2 -->
+      <!-- Mariage -->
       <article class="card">
-        <div class="thumb" style="background:
-          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-          linear-gradient(120deg, #ffd26e88, #31e6c388, #7c5cff88);"></div>
-        <div class="content">
-          <div class="krow">
-            <span class="tag">💍 Mariage</span>
-            <span class="price">à partir de 25 000 DZD</span>
+        <div class="banner">
+          <div class="badge">💍 Mariage / Fiançailles</div>
+          <div class="k">Élégant • Chic • Détails premium</div>
+        </div>
+        <div class="cardBody">
+          <div class="price">
+            <span>Prix à partir de</span>
+            <b>18 000 – 45 000 DA</b>
           </div>
-          <div class="title2">Wedding cake</div>
-          <p class="desc">Plusieurs étages, fleurs, finitions premium — devis selon le nombre de parts.</p>
+          <div class="thumbs">
+            <div class="thumb">
+              <img src="images/mariage-chocolat.jpg" alt="Gâteau chocolat" onerror="this.replaceWith(ph('Ajouter image Mariage 1'));">
+            </div>
+            <div class="thumb">
+              <img src="images/mariage-message.jpg" alt="Ma chère femme" onerror="this.replaceWith(ph('Ajouter image Mariage 2'));">
+            </div>
+            <div class="thumb">
+              <img src="images/mariage-luxe.jpg" alt="Mariage luxe" onerror="this.replaceWith(ph('Ajouter image Mariage 3'));">
+            </div>
+          </div>
+          <button class="btn btnPrimary" onclick="openMessenger()" style="justify-content:center;">
+            <span class="ico">💬</span> Demander un devis
+          </button>
         </div>
       </article>
 
-      <!-- Card 3 -->
+      <!-- Tradition Kabyle -->
       <article class="card">
-        <div class="thumb" style="background:
-          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-          linear-gradient(120deg, #ff4fd888, #ffd26e88, #7c5cff88);"></div>
-        <div class="content">
-          <div class="krow">
-            <span class="tag">🇩🇿 Fêtes</span>
-            <span class="price">à partir de 5 000 DZD</span>
+        <div class="banner">
+          <div class="badge">🧿 Tradition Kabyle / Amazigh</div>
+          <div class="k">Assegas ameggaz • Symboles • Tenues</div>
+        </div>
+        <div class="cardBody">
+          <div class="price">
+            <span>Prix à partir de</span>
+            <b>9 000 – 22 000 DA</b>
           </div>
-          <div class="title2">Fêtes nationales & occasions</div>
-          <p class="desc">Décor drapeau, messages, couleurs — selon la demande.</p>
+          <div class="thumbs">
+            <div class="thumb">
+              <img src="images/tradition-assegas.jpg" alt="Assegas ameggaz" onerror="this.replaceWith(ph('Ajouter image Tradition 1'));">
+            </div>
+            <div class="thumb">
+              <img src="images/tradition-robe.jpg" alt="Tenue kabyle" onerror="this.replaceWith(ph('Ajouter image Tradition 2'));">
+            </div>
+            <div class="thumb">
+              <img src="images/tradition-symboles.jpg" alt="Symboles amazigh" onerror="this.replaceWith(ph('Ajouter image Tradition 3'));">
+            </div>
+          </div>
+          <button class="btn btnPrimary" onclick="openMessenger()" style="justify-content:center;">
+            <span class="ico">💬</span> Demander un devis
+          </button>
         </div>
       </article>
+    </section>
 
-      <!-- Card 4 -->
-      <article class="card">
-        <div class="thumb" style="background:
-          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-          linear-gradient(120deg, #7c5cff88, #31e6c388, #ffd26e88);"></div>
-        <div class="content">
-          <div class="krow">
-            <span class="tag">🍪 Petits fours</span>
-            <span class="price">à partir de 3 500 DZD</span>
-          </div>
-          <div class="title2">Mignardises</div>
-          <p class="desc">Assortiments pour réception — quantité et composition au choix.</p>
-        </div>
-      </article>
+    <!-- CONTACT -->
+    <div class="secHead" id="contact" style="margin-top:8px;">
+      <div>
+        <p class="secTitle">Contact rapide</p>
+        <p class="secHint">Cliquez et envoyez votre thème + nombre de parts + date.</p>
+      </div>
+    </div>
 
-      <!-- Card 5 -->
-      <article class="card">
-        <div class="thumb" style="background:
-          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-          linear-gradient(120deg, #31e6c388, #ff4fd888, #ffd26e88);"></div>
-        <div class="content">
-          <div class="krow">
-            <span class="tag">🎨 Thèmes</span>
-            <span class="price">à partir de 6 000 DZD</span>
-          </div>
-          <div class="title2">Gâteaux à thème</div>
-          <p class="desc">Cartoon, sport, luxe… on adapte le design au budget.</p>
-        </div>
-      </article>
+    <section class="card" style="margin-top:12px;">
+      <div class="cardBody">
+        <div style="display:grid; gap:10px;">
+          <div class="badge">📩 Réponse rapide sur Messenger</div>
+          <p class="lead" style="margin:0;">
+            Dites-moi : <b>Type d’événement</b> • <b>Thème</b> • <b>Nombre de parts</b> • <b>Date</b> • <b>Ville</b>.
+            Je vous envoie un devis en détail.
+          </p>
 
-      <!-- Card 6 -->
-      <article class="card">
-        <div class="thumb" style="background:
-          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
-          linear-gradient(120deg, #ffd26e88, #7c5cff88, #31e6c388);"></div>
-        <div class="content">
-          <div class="krow">
-            <span class="tag">✨ Tradition</span>
-            <span class="price">à partir de 4 000 DZD</span>
+          <div class="miniCtas">
+            <button class="btn btnPrimary" onclick="openMessenger()"><span class="ico">💬</span> Ouvrir Messenger</button>
+            <a class="btn btnGhost" href="https://www.facebook.com/share/1HkunEg1Wh/" target="_blank" rel="noopener">
+              <span class="ico">📘</span> Page Facebook
+            </a>
+            <button class="btn btnGhost" onclick="openWhatsApp()"><span class="ico">🟢</span> WhatsApp (à ajouter)</button>
           </div>
-          <div class="title2">Touches traditionnelles</div>
-          <p class="desc">Inspiration Kabylie: détails, motifs, couleurs (selon le style souhaité).</p>
+
+          <div class="kabyleNote">ⵣ “Assegas ameggaz” • Créations inspirées de la Kabylie</div>
         </div>
-      </article>
+      </div>
     </section>
 
     <footer>
-      <div style="font-weight:900;color:#ffffffdd">Le Bon Goût</div>
-      <div>by Kamelia Iabadene — Kabylie</div>
-      <div style="margin-top:8px;font-size:12px">
-        © <span id="y"></span> • Devis via WhatsApp/Messenger • Prix indicatifs (DZD)
-      </div>
+      <div>© <span id="y"></span> Le Bon Goût – Sucré & Salé</div>
+      <div>by Kamelia Iabadene • Vitrine web</div>
     </footer>
-  </main>
+  </div>
 
   <script>
-    // ====== CONFIG (بدّلهم كي تحب) ======
-    const WHATSAPP_NUMBER = "213000000000"; // مثال: 213xxxxxxxxx (بدون + وبدون مسافات)
-    const WHATSAPP_TEXT   = encodeURIComponent("Bonjour, je veux un devis pour un gâteau (Le Bon Goût).");
-    const MESSENGER_LINK  = "https://m.me/YourPageUsername"; // بدّلها لاحقًا
-    const INSTAGRAM_LINK  = "https://instagram.com/"; // بدّلها لاحقًا
-    const FACEBOOK_LINK   = "https://facebook.com/";  // بدّلها لاحقًا
-    const PHONE_NUMBER    = "+213 00 00 00 00";        // للعرض
-    const PHONE_TEL       = "+213000000000";           // للاتصال
-
-    // buttons
-    const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
-    document.getElementById("btnWhats").href = wa;
-    document.getElementById("btnDevis").href = wa; // Devis يروح مباشرة واتساب (تقدر تبدلو لمسـنجر)
-    document.getElementById("btnMsg").href = MESSENGER_LINK;
-    document.getElementById("btnCall").href = `tel:${PHONE_TEL}`;
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // ====== “Game / 3D” micro-interactions (tilt + parallax) ======
-    function addTilt(el, strength=10){
-      let rect;
-      const onMove = (e)=>{
-        rect = rect || el.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        const rx = (0.5 - y) * strength;
-        const ry = (x - 0.5) * strength;
-        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
-      };
-      const onLeave = ()=>{
-        rect = null;
-        el.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-      };
-      el.addEventListener("mousemove", onMove);
-      el.addEventListener("mouseleave", onLeave);
+    // Messenger: open Facebook page in a "message" intent (best effort)
+    function openMessenger(){
+      // If you later give me the exact Messenger username/link, I’ll lock it perfectly.
+      // For now: open the Facebook share link (user can click Message from there).
+      window.open("https://www.facebook.com/share/1HkunEg1Wh/", "_blank");
     }
 
-    addTilt(document.getElementById("heroTilt"), 8);
-    addTilt(document.getElementById("brandTilt"), 14);
-    addTilt(document.getElementById("tiltChip"), 12);
+    // WhatsApp placeholder: you will add the number later
+    function openWhatsApp(){
+      alert("WhatsApp: أرسل لي الرقم تاع الواتساب (مع كود الجزائر +213) باش نركّبو الرابط مباشرة ✅");
+    }
 
-    // floating “game feel” for cards
-    document.querySelectorAll(".card").forEach((c, i)=>{
-      c.style.animation = `floatCard ${2.8 + (i%3)*0.25}s ease-in-out infinite`;
-      c.style.animationDelay = `${(i%6)*0.08}s`;
-    });
-
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes floatCard{
-        0%,100%{transform: translateY(0) rotateX(0) rotateY(0)}
-        50%{transform: translateY(-3px) rotateX(1.2deg) rotateY(-1.2deg)}
-      }
-    `;
-    document.head.appendChild(style);
+    // placeholder block generator
+    function ph(txt){
+      const d = document.createElement("div");
+      d.className = "ph";
+      d.textContent = txt;
+      return d;
+    }
   </script>
 </body>
 </html>
