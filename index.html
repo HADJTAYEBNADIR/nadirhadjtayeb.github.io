@@ -1,629 +1,562 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#f7b6d2" />
-  <title>Le Bon Goût | by Kamelia Iabadene</title>
-  <meta name="description" content="Vitrine لحلويات المناسبات: عيد ميلاد، زواج، مناسبات وطنية. by Kamelia Iabadene" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0a12" />
+  <title>Le Bon Goût — by Kamelia Iabadene</title>
+  <meta name="description" content="Gâteaux & desserts 3D pour anniversaires, mariages, fêtes et événements en Kabylie. Devis rapide via WhatsApp/Messenger." />
 
   <style>
     :root{
-      --bg0:#0b0b12;
-      --bg1:#101027;
-      --card:#111129cc;
-      --card2:#14143a;
-      --text:#f7f7ff;
-      --muted:#cfd0ffcc;
-      --line:#ffffff1a;
-
-      --p1:#ff4fb7;
-      --p2:#ffcf5a;
-      --p3:#5ad8ff;
-      --p4:#9b5bff;
-
-      --shadow: 0 18px 55px rgba(0,0,0,.45);
-      --shadow2: 0 10px 28px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1100px;
+      --bg0:#070610;
+      --bg1:#0b0a16;
+      --card:#0f1022cc;
+      --stroke:#ffffff1a;
+      --txt:#f5f2ff;
+      --mut:#c9c3df;
+      --acc1:#ff4fd8;
+      --acc2:#7c5cff;
+      --acc3:#31e6c3;
+      --acc4:#ffd26e;
+      --shadow: 0 18px 60px #00000088;
+      --r: 22px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Arabic", "Noto Sans", sans-serif;
-      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--txt);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(255,79,183,.35), transparent 55%),
-        radial-gradient(900px 600px at 95% 15%, rgba(90,216,255,.30), transparent 55%),
-        radial-gradient(800px 600px at 15% 95%, rgba(155,91,255,.22), transparent 55%),
-        radial-gradient(700px 500px at 85% 95%, rgba(255,207,90,.18), transparent 55%),
+        radial-gradient(1200px 600px at 12% 12%, #7c5cff22, transparent 55%),
+        radial-gradient(900px 600px at 90% 20%, #ff4fd822, transparent 55%),
+        radial-gradient(900px 700px at 40% 92%, #31e6c322, transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
 
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:18px 14px 40px;}
+    /* Animated “Kabylie vibe” subtle pattern */
+    .kabyle-pattern{
+      position:fixed; inset:-40px;
+      pointer-events:none;
+      opacity:.18;
+      filter: blur(.2px);
+      mix-blend-mode: screen;
+      background:
+        linear-gradient(90deg, transparent 0 48%, #ffd26e20 49% 51%, transparent 52% 100%),
+        linear-gradient(0deg, transparent 0 48%, #31e6c320 49% 51%, transparent 52% 100%);
+      background-size: 52px 52px;
+      transform: rotate(6deg);
+      animation: drift 16s linear infinite;
+    }
+    @keyframes drift{from{translate:0 0}to{translate:-52px -52px}}
 
     /* Top bar */
     .topbar{
-      position: sticky; top: 0; z-index: 50;
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(16,16,39,.82), rgba(16,16,39,.55));
-      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #0b0a18dd, #0b0a18aa);
+      border-bottom:1px solid var(--stroke);
     }
-    .topbar .inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 10px 14px;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
+    .topbar-inner{
+      max-width:1100px; margin:0 auto; padding:12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width: 0;
+    .left-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+    .chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--stroke);
+      background: #0f1022aa;
+      border-radius:999px;
+      box-shadow: 0 10px 30px #00000055;
+      transform-style:preserve-3d;
     }
-    .logo{
-      width:42px;height:42px;border-radius:14px;
+    .chip strong{font-weight:800; letter-spacing:.2px}
+    .chip small{color:var(--mut)}
+    .btn{
       position:relative;
-      box-shadow: var(--shadow2);
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.45), transparent 60%),
-        linear-gradient(135deg, rgba(255,79,183,.95), rgba(155,91,255,.95));
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, #141534cc, #0f1022cc);
+      color:var(--txt);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
       transform: translateZ(0);
+      user-select:none;
     }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-30%;
-      background: conic-gradient(from 220deg, rgba(255,207,90,.9), rgba(90,216,255,.85), rgba(255,79,183,.9));
-      filter: blur(18px);
-      opacity:.25;
-      animation: float 6s ease-in-out infinite;
+    .btn:hover{
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 14px 40px #00000066;
+      border-color:#ffffff2a;
+    }
+    .btn:active{transform: translateY(0) scale(.99)}
+    .btn.primary{
+      background: linear-gradient(120deg, #31e6c3, #7c5cff, #ff4fd8);
+      border-color: transparent;
+      color:#0b0a12;
+      font-weight:900;
+    }
+
+    /* “Game-like” animated icon */
+    .gicon{
+      width:18px; height:18px; display:inline-grid; place-items:center;
+      border-radius:6px;
+      background: radial-gradient(circle at 30% 30%, #fff, #ffffff40 35%, transparent 60%),
+                  linear-gradient(135deg, var(--acc3), var(--acc2), var(--acc1));
+      box-shadow: 0 8px 24px #00000066;
+      transform-style:preserve-3d;
+      animation: float 2.4s ease-in-out infinite;
+    }
+    .gicon i{
+      width:9px;height:9px; border-radius:2px;
+      background:#0b0a12cc;
+      transform: rotate(12deg);
+      box-shadow: 0 0 0 1px #ffffff22 inset;
     }
     @keyframes float{
-      0%,100%{transform:translate(0,0) rotate(0deg)}
-      50%{transform:translate(6px,-5px) rotate(14deg)}
-    }
-    .brand h1{
-      margin:0;
-      font-size: 15px;
-      line-height: 1.1;
-      letter-spacing:.2px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .brand small{
-      display:block;
-      color:var(--muted);
-      font-size: 11.5px;
-      margin-top:2px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      0%,100%{transform: translateY(0) rotate(0deg)}
+      50%{transform: translateY(-3px) rotate(2deg)}
     }
 
-    .actions{
-      display:flex; gap:8px; align-items:center;
-      flex-wrap:nowrap;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-      font-size: 12.5px;
-      color: var(--text);
-      user-select:none;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      white-space:nowrap;
-    }
-    .pill:active{transform:scale(.98)}
-    .pill:hover{background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22)}
-    .pill.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(37,211,102,.95), rgba(17,146,72,.95));
-      box-shadow: 0 18px 40px rgba(37,211,102,.20);
-    }
-    .pill.primary:hover{filter: brightness(1.02)}
-    .iconbtn{
-      width:40px;height:40px;border-radius: 14px;
-      display:grid;place-items:center;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .iconbtn:hover{background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22)}
-    .iconbtn:active{transform:scale(.98)}
-    .ico{width:18px;height:18px;opacity:.95}
-
-    /* Hero */
-    .hero{
-      padding: 18px 0 8px;
-    }
-    .heroCard{
-      position:relative;
-      border-radius: var(--radius2);
-      padding: 18px 16px;
-      background:
-        radial-gradient(800px 220px at 50% -10%, rgba(255,79,183,.35), transparent 60%),
-        radial-gradient(600px 220px at 95% 40%, rgba(90,216,255,.20), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.16);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      transform-style: preserve-3d;
-    }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(240px 120px at 18% 25%, rgba(255,207,90,.25), transparent 60%),
-                  radial-gradient(260px 160px at 82% 75%, rgba(155,91,255,.20), transparent 60%);
-      opacity:.8;
-      pointer-events:none;
-    }
-    .heroTitle{
-      margin:0 0 6px 0;
-      font-size: 22px;
-      letter-spacing:.2px;
-      position:relative;
-    }
-    .heroSub{
-      margin:0 0 14px 0;
-      color:var(--muted);
-      font-size: 13.5px;
-      line-height: 1.6;
-      position:relative;
-    }
-    .chips{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      position:relative;
-    }
-    .chip{
-      padding:8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-    }
-
-    /* Sections */
-    .section{
-      margin-top: 16px;
-    }
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:10px;
-      margin: 0 0 10px 0;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size: 16px;
-      letter-spacing:.2px;
-    }
-    .sectionHead p{
-      margin:0;
-      color:var(--muted);
-      font-size: 12px;
-    }
-
-    /* Gallery grid */
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .card3d{
-      position:relative;
-      border-radius: var(--radius2);
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      transform-style: preserve-3d;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .card3d:hover{
-      border-color: rgba(255,255,255,.22);
-      transform: translateY(-2px);
-    }
-
-    .thumb{
-      height: 190px;
-      position:relative;
-      background: #0f0f22;
-    }
-    .thumb img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      filter:saturate(1.05) contrast(1.05);
-      transform: scale(1.02);
-    }
-    .shine{
-      position:absolute; inset:-40%;
-      background: radial-gradient(220px 140px at 30% 20%, rgba(255,255,255,.30), transparent 60%);
-      transform: translate3d(0,0,30px);
-      opacity:.35;
-      pointer-events:none;
-    }
-    .cardBody{
-      padding: 12px 12px 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 8px;
-    }
-    .titleRow{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .cardTitle{
-      margin:0;
-      font-size: 14px;
-      letter-spacing:.2px;
-    }
-    .tag{
-      padding:6px 8px;
-      border-radius: 999px;
-      font-size: 11px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.20);
-      color: var(--muted);
-      white-space:nowrap;
-    }
-    .desc{
-      margin:0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-    .priceRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding-top: 6px;
-      border-top: 1px solid var(--line);
-    }
-    .price{
-      font-weight: 700;
-      font-size: 13px;
-    }
-    .hint{
-      color: var(--muted);
-      font-size: 11.5px;
-    }
-
-    /* CTA */
-    .cta{
-      margin-top: 16px;
-      border-radius: var(--radius2);
-      padding: 14px 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(255,79,183,.14), rgba(90,216,255,.10));
-      box-shadow: var(--shadow2);
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .cta .txt{
+    /* Brand (logo placeholder) */
+    .brand{
+      display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
-    .cta h3{
-      margin:0 0 4px 0; font-size: 14.5px;
+    .logo3d{
+      width:42px; height:42px; border-radius:14px;
+      background: conic-gradient(from 230deg, var(--acc1), var(--acc2), var(--acc3), var(--acc4), var(--acc1));
+      box-shadow: 0 18px 50px #00000088, 0 0 0 1px #ffffff22 inset;
+      position:relative;
+      transform: rotateZ(-10deg);
+      overflow:hidden;
     }
-    .cta p{
-      margin:0; color: var(--muted); font-size: 12.5px; line-height: 1.6;
+    .logo3d::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, #ffffffaa, transparent 55%);
+      transform: rotate(18deg);
+      opacity:.8;
+      animation: shine 3.2s ease-in-out infinite;
     }
+    @keyframes shine{
+      0%,100%{transform: translate(-12%, -8%) rotate(18deg)}
+      50%{transform: translate(10%, 8%) rotate(18deg)}
+    }
+    .brandtext{line-height:1.05}
+    .brandtext .title{
+      font-size:16px; font-weight:950; letter-spacing:.2px;
+      text-transform:none;
+    }
+    .brandtext .by{
+      margin-top:4px;
+      font-size:12px; color:var(--mut);
+      font-weight:700;
+      /* 3D readable on mobile */
+      text-shadow:
+        0 1px 0 #000,
+        0 2px 0 #000,
+        0 10px 26px #000000aa;
+      transform: translateZ(12px);
+    }
+
+    /* Main layout */
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 14px 64px}
+    .hero{
+      margin-top:16px;
+      padding:18px;
+      border:1px solid var(--stroke);
+      border-radius: var(--r);
+      background:
+        radial-gradient(900px 200px at 18% 0%, #ff4fd822, transparent 55%),
+        radial-gradient(600px 240px at 92% 10%, #31e6c322, transparent 60%),
+        linear-gradient(180deg, #101137cc, #0f1022cc);
+      box-shadow: var(--shadow);
+      transform-style:preserve-3d;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-60px;
+      background: radial-gradient(circle at 30% 30%, #ffffff10, transparent 55%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid; gap:14px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:center;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:#0f1022aa;
+      width:fit-content;
+      box-shadow: 0 12px 34px #00000066;
+    }
+    .badge b{font-weight:950}
+    .h1{
+      font-size: clamp(22px, 4.2vw, 38px);
+      margin:12px 0 8px;
+      letter-spacing:.2px;
+      font-weight:1000;
+    }
+    .p{color:var(--mut); margin:0 0 12px; line-height:1.6}
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .mini{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+
+    /* Kabylie hint line */
+    .kabylie-line{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;
+      color:#ffffffc9; font-weight:800;
+    }
+    .kabylie-tag{
+      padding:8px 10px;
+      border:1px dashed #ffffff2a;
+      border-radius:999px;
+      background:#0f102244;
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: linear-gradient(135deg, var(--acc4), var(--acc1));
+      box-shadow: 0 0 0 2px #00000055;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+    /* Cards */
+    .section-title{
+      margin:22px 2px 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .section-title h2{margin:0; font-size:16px; color:#ffffffdd; letter-spacing:.2px}
+    .section-title small{color:var(--mut)}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      overflow:hidden;
+      background: linear-gradient(180deg, #121335cc, #0f1022cc);
+      box-shadow: 0 16px 44px #00000055;
+      transform-style:preserve-3d;
+      position:relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor:default;
+    }
+    .card:hover{
+      transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 22px 70px #00000077;
+      border-color:#ffffff2a;
+    }
+    .thumb{
+      height:130px;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+        linear-gradient(120deg, #ff4fd888, #7c5cff88, #31e6c388);
+      position:relative;
+    }
+    .thumb::after{
+      content:"Aperçu";
+      position:absolute; inset:auto 12px 12px 12px;
+      font-weight:900; letter-spacing:.2px;
+      color:#0b0a12;
+      background:#ffffffc9;
+      padding:8px 10px;
+      border-radius:999px;
+      width:fit-content;
+      box-shadow: 0 12px 30px #00000055;
+    }
+    .content{padding:12px 12px 14px}
+    .krow{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:#ffffffd7;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid #ffffff22;
+      background:#0f102266;
+      width:fit-content;
+    }
+    .price{
+      font-weight:1000;
+      background: linear-gradient(120deg, var(--acc4), #ffffff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 8px 28px #00000066;
+    }
+    .title2{margin:10px 0 6px; font-weight:950; letter-spacing:.2px}
+    .desc{margin:0; color:var(--mut); font-size:13px; line-height:1.55}
 
     /* Footer */
     footer{
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top:1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      margin-top:28px;
+      padding:16px 14px;
+      border-top:1px solid var(--stroke);
+      color:var(--mut);
+      text-align:center;
     }
 
-    /* Desktop-ish tweaks */
-    @media (min-width: 720px){
-      .brand h1{font-size: 16px}
-      .heroTitle{font-size: 30px}
-      .grid{grid-template-columns: repeat(2, 1fr)}
-      .thumb{height: 210px}
-    }
-    @media (min-width: 1020px){
-      .grid{grid-template-columns: repeat(3, 1fr)}
-      .thumb{height: 220px}
+    /* Mobile first priority */
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .mini{justify-content:flex-start}
+      .grid{grid-template-columns:1fr}
+      .brand{min-width:auto}
+      .chip{padding:9px 10px}
+      .btn{padding:10px 11px}
     }
 
-    /* Accessibility */
-    .sr{position:absolute; width:1px;height:1px; padding:0;margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
-
-    /* Small 3D tilt via JS (mobile safe) */
-    .tilt{will-change: transform}
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+    }
   </style>
 </head>
 
 <body>
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="inner">
-      <div class="brand" title="Le Bon Goût">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Le Bon Goût</h1>
-          <small>by Kamelia Iabadene • حلويات المناسبات</small>
+  <div class="kabyle-pattern" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="left-actions">
+        <div class="chip" id="tiltChip">
+          <span class="gicon"><i></i></span>
+          <div>
+            <strong>Devis rapide</strong><br/>
+            <small>WhatsApp / Messenger</small>
+          </div>
         </div>
+
+        <a class="btn primary" id="btnDevis" href="#" target="_blank" rel="noopener">
+          <span class="gicon" style="animation-duration:2.0s"><i></i></span>
+          Demander un devis
+        </a>
+
+        <a class="btn" id="btnCall" href="#">
+          📞 Appeler
+        </a>
       </div>
 
-      <div class="actions">
-        <!-- عدّل رقم الهاتف هنا -->
-        <a class="pill" href="tel:+213000000000" title="اتصال">
-          <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6.6 10.8c1.5 2.7 3.9 5.1 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.7.6 4.2.6.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.2 22.2 1.8 13.8 1.8 3.2 1.8 2.5 2.3 2 3 2h4.4c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.9.6 4.2.1.4 0 .9-.3 1.2L6.6 10.8Z" stroke="white" stroke-opacity=".9" stroke-width="1.5"/>
-          </svg>
-          <span>اتصال</span>
-        </a>
-
-        <!-- زر واتساب: عدّل الرقم + الرسالة -->
-        <a class="pill primary" id="waBtn" href="#" title="WhatsApp">
-          <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2.2a9.6 9.6 0 0 0-8.3 14.3L2.7 22l5.7-1.0A9.6 9.6 0 1 0 12 2.2Z" stroke="white" stroke-opacity=".95" stroke-width="1.5"/>
-            <path d="M9.3 7.9c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.4-.2.2-.9.9-.9 2.1s.9 2.5 1 2.6c.2.2 1.7 2.7 4.2 3.7 2.1.9 2.5.7 3 .6.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.4-.2-.8-.4l-1.2-.6c-.4-.2-.7-.2-.9.2-.3.4-.5.7-.7.8-.2.1-.4.1-.8-.1-.4-.2-1.5-.6-2.8-1.9-1-1.1-1.7-2.4-1.9-2.8-.2-.4 0-.6.1-.8l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-.7-1.7Z" fill="white" fill-opacity=".95"/>
-          </svg>
-          <span>واتساب</span>
-        </a>
-
-        <!-- Social icons: عدّل الروابط -->
-        <a class="iconbtn" href="https://instagram.com/" target="_blank" rel="noopener" title="Instagram">
-          <span class="sr">Instagram</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7.2 2.8h9.6A4.4 4.4 0 0 1 21.2 7.2v9.6a4.4 4.4 0 0 1-4.4 4.4H7.2a4.4 4.4 0 0 1-4.4-4.4V7.2a4.4 4.4 0 0 1 4.4-4.4Z" stroke="white" stroke-opacity=".9" stroke-width="1.5"/>
-            <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="white" stroke-opacity=".9" stroke-width="1.5"/>
-            <path d="M17.4 6.6h.01" stroke="white" stroke-opacity=".9" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </a>
-
-        <a class="iconbtn" href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-          <span class="sr">Facebook</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M14 8.7V7.2c0-.8.4-1.2 1.3-1.2h1.5V3h-2.4C12 3 11 4.3 11 6.4v2.3H9v3h2v9h3v-9h2.4l.6-3H14Z" fill="white" fill-opacity=".92"/>
-          </svg>
-        </a>
+      <div class="brand" id="brandTilt">
+        <div class="logo3d" id="logoBox" title="Logo (placeholder)"></div>
+        <div class="brandtext">
+          <div class="title">Le Bon Goût</div>
+          <div class="by">by Kamelia Iabadene</div>
+        </div>
       </div>
     </div>
-  </div>
+  </header>
 
   <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="heroCard tilt" data-tilt>
-        <h2 class="heroTitle">حلويات 3D للمناسبات 👑</h2>
-        <p class="heroSub">
-          Vitrine لأعمالنا: عيد ميلاد، زواج، خطوبة، أعياد وطنية… نعرض لك أمثلة من الغاتو مع أسعار تبدأ من… إلى…
-          <br/>اختار التصميم، ابعث صورة/فكرة، ونتكفل بالباقي.
-        </p>
-        <div class="chips">
-          <span class="chip">🎂 عيد ميلاد</span>
-          <span class="chip">💍 زواج/خطوبة</span>
-          <span class="chip">🇩🇿 مناسبات وطنية</span>
-          <span class="chip">✨ تصميم حسب الطلب</span>
+    <section class="hero" id="heroTilt">
+      <div class="hero-grid">
+        <div>
+          <div class="badge">
+            <span class="dot"></span>
+            <b>Desserts & gâteaux 3D</b>
+            <span style="color:var(--mut)">pour tous vos événements</span>
+          </div>
+
+          <h1 class="h1">Une vitrine élégante pour vos gâteaux personnalisés</h1>
+          <p class="p">
+            Anniversaire, mariage, fêtes nationales, événements familiaux…
+            Découvrez des exemples (photos à ajouter ensuite) et des tarifs indicatifs en <b>DZD</b>.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" id="btnWhats" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+            <a class="btn" id="btnMsg" href="#" target="_blank" rel="noopener">📩 Messenger</a>
+            <a class="btn" href="#catalogue">🎂 Voir le catalogue</a>
+          </div>
+        </div>
+
+        <div class="mini">
+          <div class="kabylie-line">
+            <span class="kabylie-tag">⛰️ Kabylie</span>
+            <span class="kabylie-tag">✨ Fait maison</span>
+            <span class="kabylie-tag">🎉 Sur commande</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section class="section" id="gallery">
-      <div class="sectionHead">
-        <h2>أمثلة من الأعمال</h2>
-        <p>الصور مؤقتة—نبدلها بصورك لاحقًا.</p>
-      </div>
+    <div class="section-title" id="catalogue">
+      <h2>Exemples de catégories</h2>
+      <small>(Photos réelles à ajouter après le design)</small>
+    </div>
 
-      <div class="grid">
-        <!-- Card 1 -->
-        <article class="card3d tilt" data-tilt>
-          <div class="thumb">
-            <img alt="Gâteau Anniversaire" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'> <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%23ff4fb7'/><stop offset='1' stop-color='%239b5bff'/></linearGradient></defs> <rect width='100%25' height='100%25' fill='url(%23g)'/> <circle cx='260' cy='240' r='170' fill='rgba(255,255,255,0.18)'/> <circle cx='930' cy='520' r='240' fill='rgba(255,255,255,0.12)'/> <text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='54' fill='rgba(255,255,255,0.92)'>Anniversaire</text> <text x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='22' fill='rgba(255,255,255,0.80)'>Remplacez par vos photos</text> </svg>" />
-            <div class="shine"></div>
+    <section class="grid" id="cards">
+      <!-- Card 1 -->
+      <article class="card">
+        <div class="thumb" style="background:
+          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+          linear-gradient(120deg, #31e6c388, #7c5cff88, #ff4fd888);"></div>
+        <div class="content">
+          <div class="krow">
+            <span class="tag">🎈 Anniversaire</span>
+            <span class="price">à partir de 8 000 DZD</span>
           </div>
-          <div class="cardBody">
-            <div class="titleRow">
-              <h3 class="cardTitle">غاتو عيد ميلاد (3D)</h3>
-              <span class="tag">🎂 Birthday</span>
-            </div>
-            <p class="desc">تصميم حسب الطلب: شخصية، رقم، ألوان، رسالة…</p>
-            <div class="priceRow">
-              <div class="price">السعر يبدأ من: 35€ → 90€</div>
-              <div class="hint">حسب الحجم والتفاصيل</div>
-            </div>
-          </div>
-        </article>
+          <div class="title2">Gâteau d’anniversaire (3D)</div>
+          <p class="desc">Design personnalisé selon le thème, taille et détails sur demande.</p>
+        </div>
+      </article>
 
-        <!-- Card 2 -->
-        <article class="card3d tilt" data-tilt>
-          <div class="thumb">
-            <img alt="Gâteau Mariage" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'> <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%23ffcf5a'/><stop offset='1' stop-color='%235ad8ff'/></linearGradient></defs> <rect width='100%25' height='100%25' fill='url(%23g)'/> <circle cx='340' cy='530' r='260' fill='rgba(0,0,0,0.10)'/> <circle cx='960' cy='260' r='190' fill='rgba(255,255,255,0.18)'/> <text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='54' fill='rgba(15,15,34,0.90)'>Mariage</text> <text x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='22' fill='rgba(15,15,34,0.70)'>Remplacez par vos photos</text> </svg>" />
-            <div class="shine"></div>
+      <!-- Card 2 -->
+      <article class="card">
+        <div class="thumb" style="background:
+          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+          linear-gradient(120deg, #ffd26e88, #31e6c388, #7c5cff88);"></div>
+        <div class="content">
+          <div class="krow">
+            <span class="tag">💍 Mariage</span>
+            <span class="price">à partir de 25 000 DZD</span>
           </div>
-          <div class="cardBody">
-            <div class="titleRow">
-              <h3 class="cardTitle">غاتو زواج/خطوبة</h3>
-              <span class="tag">💍 Wedding</span>
-            </div>
-            <p class="desc">ستايل فاخر، ألوان ناعمة، طبقات متعددة.</p>
-            <div class="priceRow">
-              <div class="price">السعر يبدأ من: 80€ → 250€</div>
-              <div class="hint">حسب عدد الطبقات</div>
-            </div>
-          </div>
-        </article>
+          <div class="title2">Wedding cake</div>
+          <p class="desc">Plusieurs étages, fleurs, finitions premium — devis selon le nombre de parts.</p>
+        </div>
+      </article>
 
-        <!-- Card 3 -->
-        <article class="card3d tilt" data-tilt>
-          <div class="thumb">
-            <img alt="Gâteau National" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'> <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%235ad8ff'/><stop offset='1' stop-color='%23ff4fb7'/></linearGradient></defs> <rect width='100%25' height='100%25' fill='url(%23g)'/> <circle cx='260' cy='300' r='220' fill='rgba(0,0,0,0.10)'/> <circle cx='980' cy='560' r='260' fill='rgba(255,255,255,0.12)'/> <text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='54' fill='rgba(255,255,255,0.92)'>Occasion</text> <text x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='22' fill='rgba(255,255,255,0.80)'>Remplacez par vos photos</text> </svg>" />
-            <div class="shine"></div>
+      <!-- Card 3 -->
+      <article class="card">
+        <div class="thumb" style="background:
+          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+          linear-gradient(120deg, #ff4fd888, #ffd26e88, #7c5cff88);"></div>
+        <div class="content">
+          <div class="krow">
+            <span class="tag">🇩🇿 Fêtes</span>
+            <span class="price">à partir de 5 000 DZD</span>
           </div>
-          <div class="cardBody">
-            <div class="titleRow">
-              <h3 class="cardTitle">مناسبات وطنية / حفلات</h3>
-              <span class="tag">🇩🇿 Event</span>
-            </div>
-            <p class="desc">شعارات، ألوان علم، رسائل خاصة للمناسبة.</p>
-            <div class="priceRow">
-              <div class="price">السعر يبدأ من: 45€ → 140€</div>
-              <div class="hint">حسب الفكرة</div>
-            </div>
-          </div>
-        </article>
+          <div class="title2">Fêtes nationales & occasions</div>
+          <p class="desc">Décor drapeau, messages, couleurs — selon la demande.</p>
+        </div>
+      </article>
 
-        <!-- Card 4 -->
-        <article class="card3d tilt" data-tilt>
-          <div class="thumb">
-            <img alt="Mini Cakes" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'> <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%239b5bff'/><stop offset='1' stop-color='%23ffcf5a'/></linearGradient></defs> <rect width='100%25' height='100%25' fill='url(%23g)'/> <circle cx='420' cy='300' r='160' fill='rgba(255,255,255,0.16)'/> <circle cx='860' cy='520' r='220' fill='rgba(0,0,0,0.10)'/> <text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='54' fill='rgba(255,255,255,0.92)'>Mini</text> <text x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='22' fill='rgba(255,255,255,0.80)'>Remplacez par vos photos</text> </svg>" />
-            <div class="shine"></div>
+      <!-- Card 4 -->
+      <article class="card">
+        <div class="thumb" style="background:
+          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+          linear-gradient(120deg, #7c5cff88, #31e6c388, #ffd26e88);"></div>
+        <div class="content">
+          <div class="krow">
+            <span class="tag">🍪 Petits fours</span>
+            <span class="price">à partir de 3 500 DZD</span>
           </div>
-          <div class="cardBody">
-            <div class="titleRow">
-              <h3 class="cardTitle">ميني غاتو / Cupcakes</h3>
-              <span class="tag">🧁 Mini</span>
-            </div>
-            <p class="desc">قطع صغيرة للحفلات والطاولات، ألوان جميلة.</p>
-            <div class="priceRow">
-              <div class="price">السعر يبدأ من: 20€ → 60€</div>
-              <div class="hint">حسب العدد</div>
-            </div>
-          </div>
-        </article>
+          <div class="title2">Mignardises</div>
+          <p class="desc">Assortiments pour réception — quantité et composition au choix.</p>
+        </div>
+      </article>
 
-        <!-- Card 5 -->
-        <article class="card3d tilt" data-tilt>
-          <div class="thumb">
-            <img alt="Traditional" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'> <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%23ff4fb7'/><stop offset='1' stop-color='%23ffcf5a'/></linearGradient></defs> <rect width='100%25' height='100%25' fill='url(%23g)'/> <circle cx='310' cy='520' r='260' fill='rgba(255,255,255,0.14)'/> <circle cx='940' cy='260' r='190' fill='rgba(0,0,0,0.10)'/> <text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='54' fill='rgba(15,15,34,0.85)'>Tradition</text> <text x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='22' fill='rgba(15,15,34,0.65)'>Remplacez par vos photos</text> </svg>" />
-            <div class="shine"></div>
+      <!-- Card 5 -->
+      <article class="card">
+        <div class="thumb" style="background:
+          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+          linear-gradient(120deg, #31e6c388, #ff4fd888, #ffd26e88);"></div>
+        <div class="content">
+          <div class="krow">
+            <span class="tag">🎨 Thèmes</span>
+            <span class="price">à partir de 6 000 DZD</span>
           </div>
-          <div class="cardBody">
-            <div class="titleRow">
-              <h3 class="cardTitle">حلويات تقليدية (قبائلية/جزائرية)</h3>
-              <span class="tag">🍯 Trad</span>
-            </div>
-            <p class="desc">تشكيلة للضيافة، نكهات متنوعة وتقديم راقي.</p>
-            <div class="priceRow">
-              <div class="price">السعر يبدأ من: 25€ → 120€</div>
-              <div class="hint">حسب الوزن</div>
-            </div>
-          </div>
-        </article>
+          <div class="title2">Gâteaux à thème</div>
+          <p class="desc">Cartoon, sport, luxe… on adapte le design au budget.</p>
+        </div>
+      </article>
 
-        <!-- Card 6 -->
-        <article class="card3d tilt" data-tilt>
-          <div class="thumb">
-            <img alt="Custom Theme" src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?> <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'> <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%235ad8ff'/><stop offset='1' stop-color='%239b5bff'/></linearGradient></defs> <rect width='100%25' height='100%25' fill='url(%23g)'/> <circle cx='360' cy='300' r='200' fill='rgba(255,255,255,0.14)'/> <circle cx='920' cy='540' r='260' fill='rgba(255,255,255,0.10)'/> <text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='54' fill='rgba(255,255,255,0.92)'>Theme</text> <text x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='22' fill='rgba(255,255,255,0.80)'>Remplacez par vos photos</text> </svg>" />
-            <div class="shine"></div>
+      <!-- Card 6 -->
+      <article class="card">
+        <div class="thumb" style="background:
+          radial-gradient(circle at 30% 30%, #ffffff30, transparent 55%),
+          linear-gradient(120deg, #ffd26e88, #7c5cff88, #31e6c388);"></div>
+        <div class="content">
+          <div class="krow">
+            <span class="tag">✨ Tradition</span>
+            <span class="price">à partir de 4 000 DZD</span>
           </div>
-          <div class="cardBody">
-            <div class="titleRow">
-              <h3 class="cardTitle">ثيمات خاصة (حسب صورة)</h3>
-              <span class="tag">✨ Custom</span>
-            </div>
-            <p class="desc">تحب ثيم معين؟ ابعث صورة/فكرة وننفذها.</p>
-            <div class="priceRow">
-              <div class="price">السعر يبدأ من: 40€ → 180€</div>
-              <div class="hint">حسب الديكور</div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-      <div class="txt">
-        <h3>تحب تحجز؟ ابعث الفكرة على واتساب</h3>
-        <p>أرسل: نوع المناسبة + التاريخ + عدد الأشخاص + صورة/ثيم (اختياري).</p>
-      </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <a class="pill primary" id="waBtn2" href="#">اطلب الآن على واتساب</a>
-        <a class="pill" href="#gallery">شاهد الأعمال</a>
-      </div>
+          <div class="title2">Touches traditionnelles</div>
+          <p class="desc">Inspiration Kabylie: détails, motifs, couleurs (selon le style souhaité).</p>
+        </div>
+      </article>
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Le Bon Goût — by Kamelia Iabadene</div>
-      <div style="opacity:.95">نسخة أولية • نقدر نبدلو الألوان/الصور/الأسعار في أي وقت</div>
+      <div style="font-weight:900;color:#ffffffdd">Le Bon Goût</div>
+      <div>by Kamelia Iabadene — Kabylie</div>
+      <div style="margin-top:8px;font-size:12px">
+        © <span id="y"></span> • Devis via WhatsApp/Messenger • Prix indicatifs (DZD)
+      </div>
     </footer>
   </main>
 
   <script>
-    // ====== عدّل المعلومات هنا بسهولة ======
-    const PHONE = "+213000000000"; // <-- بدّل رقم الهاتف هنا
-    const WHATSAPP_NUMBER = "+213000000000"; // <-- بدّل رقم واتساب هنا
-    const WHATSAPP_MESSAGE = "سلام! حبيت نطلب غاتو من Le Bon Goût. المناسبة: ... التاريخ: ... عدد الأشخاص: ..."; // <-- الرسالة
+    // ====== CONFIG (بدّلهم كي تحب) ======
+    const WHATSAPP_NUMBER = "213000000000"; // مثال: 213xxxxxxxxx (بدون + وبدون مسافات)
+    const WHATSAPP_TEXT   = encodeURIComponent("Bonjour, je veux un devis pour un gâteau (Le Bon Goût).");
+    const MESSENGER_LINK  = "https://m.me/YourPageUsername"; // بدّلها لاحقًا
+    const INSTAGRAM_LINK  = "https://instagram.com/"; // بدّلها لاحقًا
+    const FACEBOOK_LINK   = "https://facebook.com/";  // بدّلها لاحقًا
+    const PHONE_NUMBER    = "+213 00 00 00 00";        // للعرض
+    const PHONE_TEL       = "+213000000000";           // للاتصال
 
-    // ====== Apply links ======
-    function cleanNumber(n){
-      return (n || "").replace(/\s+/g,"").replace(/[()\-]/g,"");
+    // buttons
+    const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
+    document.getElementById("btnWhats").href = wa;
+    document.getElementById("btnDevis").href = wa; // Devis يروح مباشرة واتساب (تقدر تبدلو لمسـنجر)
+    document.getElementById("btnMsg").href = MESSENGER_LINK;
+    document.getElementById("btnCall").href = `tel:${PHONE_TEL}`;
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // ====== “Game / 3D” micro-interactions (tilt + parallax) ======
+    function addTilt(el, strength=10){
+      let rect;
+      const onMove = (e)=>{
+        rect = rect || el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rx = (0.5 - y) * strength;
+        const ry = (x - 0.5) * strength;
+        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-1px)`;
+      };
+      const onLeave = ()=>{
+        rect = null;
+        el.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+      };
+      el.addEventListener("mousemove", onMove);
+      el.addEventListener("mouseleave", onLeave);
     }
-    const wa = "https://wa.me/" + cleanNumber(WHATSAPP_NUMBER).replace(/^\+/,'') + "?text=" + encodeURIComponent(WHATSAPP_MESSAGE);
 
-    document.getElementById("waBtn").href = wa;
-    document.getElementById("waBtn2").href = wa;
+    addTilt(document.getElementById("heroTilt"), 8);
+    addTilt(document.getElementById("brandTilt"), 14);
+    addTilt(document.getElementById("tiltChip"), 12);
 
-    // update tel links
-    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
-      a.href = "tel:" + cleanNumber(PHONE);
+    // floating “game feel” for cards
+    document.querySelectorAll(".card").forEach((c, i)=>{
+      c.style.animation = `floatCard ${2.8 + (i%3)*0.25}s ease-in-out infinite`;
+      c.style.animationDelay = `${(i%6)*0.08}s`;
     });
 
-    // year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ====== Simple 3D tilt (lightweight, mobile friendly) ======
-    const tiltEls = document.querySelectorAll("[data-tilt]");
-    const isTouch = matchMedia("(hover: none)").matches;
-
-    function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
-
-    tiltEls.forEach(el=>{
-      if(isTouch) return; // على الهاتف نخليه ثابت (أفضل للأداء)
-      el.classList.add("tilt");
-
-      el.addEventListener("mousemove", (e)=>{
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        const rx = clamp((0.5 - py) * 10, -8, 8);
-        const ry = clamp((px - 0.5) * 12, -10, 10);
-        el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-      });
-      el.addEventListener("mouseleave", ()=>{
-        el.style.transform = "";
-      });
-    });
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes floatCard{
+        0%,100%{transform: translateY(0) rotateX(0) rotateY(0)}
+        50%{transform: translateY(-3px) rotateX(1.2deg) rotateY(-1.2deg)}
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
