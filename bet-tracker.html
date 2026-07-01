@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OverGoal AI - لوحة تحكم الرهانات</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --green-bg: #e6f7ed;
+            --green-text: #219653;
+            --red-bg: #fdeaea;
+            --red-text: #eb5757;
+            --text-dark: #333333;
+            --text-muted: #828282;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .success-rate {
+            background-color: var(--green-bg);
+            color: var(--green-text);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-bottom: 25px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1 / 1.15;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 6px 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background-color: #fff;
+        }
+
+        .calendar-day:hover {
+            transform: scale(1.03);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .day-number {
+            color: var(--text-dark);
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .day-amount {
+            font-size: 9px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .day-profit {
+            background-color: var(--green-bg);
+            border-color: #c2eed5;
+            color: var(--green-text);
+        }
+
+        .day-loss {
+            background-color: var(--red-bg);
+            border-color: #f9d2d2;
+            color: var(--red-text);
+        }
+
+        .day-empty {
+            background-color: #fafafa;
+            border-color: #eee;
+            color: var(--text-muted);
+        }
+
+        .stats-panel {
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 15px;
+        }
+
+        .row-days {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .stat-box {
+            display: flex;
+            align-items: center;
+            width: 48%;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .icon-win { background-color: var(--green-bg); color: var(--green-text); }
+        .icon-lose { background-color: var(--red-bg); color: var(--red-text); }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .total-profit-box {
+            display: flex;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        .total-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--green-bg);
+            color: var(--green-text);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin-left: 15px;
+        }
+
+        .total-profit-amount {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--green-text);
+        }
+
+        .input-section {
+            margin-top: 15px;
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .input-section h3 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        select, input, button {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        select { width: 30%; }
+        input { width: 45%; }
+        button {
+            width: 25%;
+            background-color: #2f80ed;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover { background-color: #1b66ca; }
+
+        .month-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .month-nav button.nav-btn {
+            width: auto;
+            background-color: #fafafa;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            font-size: 16px;
+            padding: 6px 14px;
+        }
+
+        .month-nav button.nav-btn:hover {
+            background-color: #eee;
+        }
+
+        .month-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .type-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .type-btn {
+            flex: 1;
+            width: auto;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background-color: #fff;
+            color: var(--text-muted);
+        }
+
+        .type-btn.active-win {
+            background-color: var(--green-bg);
+            color: var(--green-text);
+            border-color: #c2eed5;
+        }
+
+        .type-btn.active-loss {
+            background-color: var(--red-bg);
+            color: var(--red-text);
+            border-color: #f9d2d2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="header">
+        <div class="header-title">سجل الأرباح والخسائر</div>
+        <div class="success-rate" id="successRate">نسبة النجاح: 0%</div>
+    </div>
+
+    <div class="month-nav">
+        <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
+        <div class="month-title" id="monthTitle"></div>
+        <button class="nav-btn" onclick="changeMonth(1)">›</button>
+    </div>
+
+    <div class="calendar-grid" id="calendarGrid">
+        </div>
+
+    <div class="stats-panel">
+        <div class="row-days">
+            <div class="stat-box">
+                <div class="stat-icon icon-win">🏆</div>
+                <div class="stat-info">
+                    <span class="stat-label">الأيام الرابحة</span>
+                    <span class="stat-value" id="winningDays">0</span>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon icon-lose">📉</div>
+                <div class="stat-info">
+                    <span class="stat-label">الأيام الخاسرة</span>
+                    <span class="stat-value" id="losingDays">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="total-profit-box">
+            <div class="total-icon">📊</div>
+            <div class="stat-info">
+                <span class="stat-label">إجمالي الصافي</span>
+                <span class="total-profit-amount" id="totalProfit">+€0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-section">
+        <h3>تحديث بيانات يوم:</h3>
+        <div class="type-toggle">
+            <button type="button" class="type-btn" id="btnWin" onclick="setType('win')">✅ ربح</button>
+            <button type="button" class="type-btn" id="btnLoss" onclick="setType('loss')">❌ خسارة</button>
+        </div>
+        <div id="typeHint" style="font-size:11px; color: var(--text-muted); margin-bottom:8px;">الوضع الحالي: ربح (موجب +)</div>
+        <div class="form-group">
+            <select id="daySelect"></select>
+            <input type="number" id="amountInput" min="0" placeholder="المبلغ (مثال: 150)">
+            <button onclick="updateDay()">حفظ</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = 'nadir_bets_data_v2';
+    const MONTH_NAMES = ['جانفي', 'فيفري', 'مارس', 'أفريل', 'ماي', 'جوان', 'جويلية', 'أوت', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    const now = new Date();
+    let currentYear = now.getFullYear();
+    let currentMonth = now.getMonth(); // 0 = جانفي ... 11 = ديسمبر
+    let allData = {}; // { "2026-0": {1: 456.20, ...}, "2026-1": {...}, ... }
+    let selectedType = 'win';
+
+    function setType(type) {
+        selectedType = type;
+        const btnWin = document.getElementById('btnWin');
+        const btnLoss = document.getElementById('btnLoss');
+        const hint = document.getElementById('typeHint');
+
+        btnWin.classList.remove('active-win');
+        btnLoss.classList.remove('active-loss');
+
+        if (type === 'win') {
+            btnWin.classList.add('active-win');
+            hint.textContent = 'الوضع الحالي: ربح (موجب +)';
+            hint.style.color = 'var(--green-text)';
+        } else {
+            btnLoss.classList.add('active-loss');
+            hint.textContent = 'الوضع الحالي: خسارة (سالب -)';
+            hint.style.color = 'var(--red-text)';
+        }
+    }
+
+    function monthKey(year, month) {
+        return `${year}-${month}`;
+    }
+
+    function daysInMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
+    }
+
+    function loadData() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            allData = JSON.parse(saved);
+        } else {
+            allData = {};
+        }
+
+        // بيانات تجريبية أولية للشهر الحالي فقط عند أول استخدام
+        const key = monthKey(currentYear, currentMonth);
+        if (!allData[key]) {
+            allData[key] = {};
+            for (let i = 1; i <= daysInMonth(currentYear, currentMonth); i++) allData[key][i] = 0;
+            saveData();
+        }
+    }
+
+    function saveData() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(allData));
+    }
+
+    function getCurrentMonthData() {
+        const key = monthKey(currentYear, currentMonth);
+        if (!allData[key]) {
+            allData[key] = {};
+            for (let i = 1; i <= daysInMonth(currentYear, currentMonth); i++) allData[key][i] = 0;
+            saveData();
+        }
+        return allData[key];
+    }
+
+    function changeMonth(delta) {
+        currentMonth += delta;
+        if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        renderApp();
+    }
+
+    function renderApp() {
+        const grid = document.getElementById('calendarGrid');
+        const daySelect = document.getElementById('daySelect');
+        const daysData = getCurrentMonthData();
+        const totalDays = daysInMonth(currentYear, currentMonth);
+
+        document.getElementById('monthTitle').textContent = `${MONTH_NAMES[currentMonth]} ${currentYear}`;
+
+        grid.innerHTML = '';
+        daySelect.innerHTML = '';
+        for (let i = 1; i <= totalDays; i++) {
+            let opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = `يوم ${i}`;
+            daySelect.appendChild(opt);
+        }
+
+        let winDaysCount = 0;
+        let loseDaysCount = 0;
+        let totalProfitSum = 0;
+
+        for (let i = 1; i <= totalDays; i++) {
+            const val = daysData[i] || 0;
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'calendar-day';
+            
+            let amountText = '';
+            if (val > 0) {
+                dayDiv.classList.add('day-profit');
+                amountText = `+€${val.toFixed(2)}`;
+                winDaysCount++;
+                totalProfitSum += val;
+            } else if (val < 0) {
+                dayDiv.classList.add('day-loss');
+                amountText = `-€${Math.abs(val).toFixed(2)}`;
+                loseDaysCount++;
+                totalProfitSum += val;
+            } else {
+                dayDiv.classList.add('day-empty');
+            }
+
+            dayDiv.innerHTML = `
+                <span class="day-number">${i}</span>
+                <span class="day-amount">${amountText}</span>
+            `;
+            
+            dayDiv.onclick = () => {
+                document.getElementById('daySelect').value = i;
+                document.getElementById('amountInput').value = val !== 0 ? Math.abs(val) : '';
+                setType(val < 0 ? 'loss' : 'win');
+            };
+
+            grid.appendChild(dayDiv);
+        }
+
+        document.getElementById('winningDays').textContent = winDaysCount;
+        document.getElementById('losingDays').textContent = loseDaysCount;
+        
+        const totalEl = document.getElementById('totalProfit');
+        if (totalProfitSum >= 0) {
+            totalEl.textContent = `+€${totalProfitSum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            totalEl.style.color = 'var(--green-text)';
+        } else {
+            totalEl.textContent = `-€${Math.abs(totalProfitSum).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            totalEl.style.color = 'var(--red-text)';
+        }
+
+        const totalActiveDays = winDaysCount + loseDaysCount;
+        const successRate = totalActiveDays > 0 ? Math.round((winDaysCount / totalActiveDays) * 100) : 0;
+        document.getElementById('successRate').textContent = `نسبة النجاح: ${successRate}%`;
+    }
+
+    function updateDay() {
+        const day = document.getElementById('daySelect').value;
+        const amt = parseFloat(document.getElementById('amountInput').value);
+        const daysData = getCurrentMonthData();
+        const finalAmt = isNaN(amt) ? 0 : Math.abs(amt) * (selectedType === 'loss' ? -1 : 1);
+        daysData[day] = finalAmt;
+        saveData();
+        renderApp();
+    }
+
+    loadData();
+    setType('win');
+    renderApp();
+</script>
+
+</body>
+</html>
